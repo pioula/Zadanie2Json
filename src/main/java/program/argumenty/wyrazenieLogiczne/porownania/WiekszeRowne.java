@@ -1,6 +1,6 @@
 package program.argumenty.wyrazenieLogiczne.porownania;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import javaBuilder.JavaBuilder;
 import program.Program;
 import program.argumenty.wyrazenieLogiczne.WyrazenieLogiczne;

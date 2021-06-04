@@ -1,6 +1,6 @@
 package program.argumenty.wyrazeniaMatematyczne.jednoargumentowe;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import javaBuilder.JavaBuilder;
 import program.Program;
 

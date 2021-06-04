@@ -1,6 +1,6 @@
 package program;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import javaBuilder.JavaBuilder;
 
 public abstract class Wyrazenie {

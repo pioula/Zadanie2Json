@@ -1,6 +1,6 @@
 package program.argumenty.wyrazenieLogiczne.porownania;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import program.Program;
 
 public class MniejszeRowne extends Porownanie {

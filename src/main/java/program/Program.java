@@ -1,6 +1,6 @@
 package program;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import javaBuilder.JavaBuilder;
 
 import java.io.File;
@@ -52,14 +52,14 @@ public class Program {
         return javaProgram;
     }
 
-    public void toJava(File f) {
+    public void toJava(File f, String mainClassName) {
         FileWriter writer;
         try {
             writer = new FileWriter(f);
 
             JavaBuilder javaBuilder = new JavaBuilder();
 
-            javaProgram.append(javaBuilder.openClass());
+            javaProgram.append(javaBuilder.openClass(mainClassName));
             kod.toJava(this, javaBuilder, javaBuilder.getNextFunctionName());
             javaProgram.append(javaBuilder.createMain());
             javaProgram.append(javaBuilder.closeClass());
@@ -69,10 +69,9 @@ public class Program {
             javaProgram = null;
             declaredFields = null;
             writer.close();
-            System.out.println();
         }
         catch(Exception ex) {
-            System.out.println("Blad");
+            System.out.println("Nie udalo sie stworzyc pliku java!");
         }
     }
 }

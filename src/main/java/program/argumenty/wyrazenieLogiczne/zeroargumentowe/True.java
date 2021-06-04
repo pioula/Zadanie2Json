@@ -1,6 +1,6 @@
 package program.argumenty.wyrazenieLogiczne.zeroargumentowe;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import program.Program;
 
 public class True extends WyrazenieLogiczneZeroargumentowe {

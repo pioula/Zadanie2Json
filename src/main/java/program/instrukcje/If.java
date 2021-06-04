@@ -1,6 +1,6 @@
 package program.instrukcje;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import javaBuilder.JavaBuilder;
 import program.Program;
 import program.Wyrazenie;
@@ -22,6 +22,8 @@ public class If extends Instrukcja {
             return blok_prawda.wykonaj(program);
         else if (val == 0 && blok_falsz != null)
             return blok_falsz.wykonaj(program);
+        else if (blok_falsz == null)
+            return 0;
         else
             throw new BladWykonania();
     }
@@ -41,7 +43,10 @@ public class If extends Instrukcja {
         if (blok_falsz != null) {
             String blok_falszName = javaBuilder.getNextFunctionName();
             javaIf.append("else {\n").append("return ").append(blok_falszName).append("();\n}\n");
-            blok_falsz.toJava(javaProgram, javaBuilder, blok_prawdaName);
+            blok_falsz.toJava(javaProgram, javaBuilder, blok_falszName);
+        }
+        else {
+            javaIf.append("return 0;\n");
         }
 
         javaProgram.getJavaProgram().append(javaBuilder.createFunction(functionName, javaIf.toString()));

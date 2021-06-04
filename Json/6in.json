@@ -1,0 +1,38 @@
+{
+  "typ": "Blok",
+  "instrukcje": [
+    {
+      "typ": "While",
+      "warunek": {
+        "typ": "<",
+        "argument1": {
+          "typ": "Zmienna",
+          "nazwa": "numer"
+        },
+        "argument2": {
+          "typ": "Liczba",
+          "wartosc": 0
+        }
+      },
+      "blok": {
+        "typ": "Przypisanie",
+        "nazwa": "numer",
+        "wartosc": {
+          "typ": "Plus",
+          "argument1": {
+            "typ": "Liczba",
+            "wartosc": -100
+          },
+          "argument2": {
+            "typ": "Liczba",
+            "wartosc": 9
+          }
+        }
+      }
+    },
+    {
+      "typ": "Zmienna",
+      "nazwa": "numer"
+    }
+  ]
+}

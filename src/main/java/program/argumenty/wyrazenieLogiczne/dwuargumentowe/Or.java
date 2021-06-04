@@ -1,6 +1,6 @@
 package program.argumenty.wyrazenieLogiczne.dwuargumentowe;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import javaBuilder.JavaBuilder;
 import program.Program;
 

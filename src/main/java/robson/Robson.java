@@ -1,12 +1,11 @@
 package robson;
 
-import Wyjatki.BladWykonania;
-import Wyjatki.NieprawidlowyProgram;
+import wyjatki.BladWykonania;
+import wyjatki.NieprawidlowyProgram;
 import json.JsonManager;
 import program.Program;
 
 import java.io.File;
-import java.io.FilenameFilter;
 
 public class Robson {
     private Program program;
@@ -82,7 +81,7 @@ public class Robson {
             java = matchingFiles[0];
         }
 
-        program.toJava(java);
+        program.toJava(java, filename);
     }
 
     public double wykonaj() throws BladWykonania {

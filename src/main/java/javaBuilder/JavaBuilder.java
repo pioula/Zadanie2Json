@@ -12,15 +12,22 @@ public class JavaBuilder {
     }
 
     public String createFunction(String functionName, String inside) {
-        return "public double " + functionName + "() {\n" + inside + "}\n\n";
+        return "public static double " + functionName + "() {\n" + inside + "}\n\n";
     }
 
     public String declare(String field) {
         return "static double " + field + " = 0.0;\n\n";
     }
 
-    public String openClass() {
-        return "public class Main {\n";
+    public String openClass(String mainClassName) {
+        StringBuilder className = new StringBuilder();
+        for (int i = 0; i < mainClassName.length(); i++) {
+            if (mainClassName.charAt(i) != '.')
+                className.append(mainClassName.charAt(i));
+            else
+                break;
+        }
+        return "public class " + className + " {\n";
     }
 
     public String closeClass() {

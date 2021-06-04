@@ -1,6 +1,6 @@
 package program.instrukcje;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import javaBuilder.JavaBuilder;
 import program.Program;
 import program.Wyrazenie;

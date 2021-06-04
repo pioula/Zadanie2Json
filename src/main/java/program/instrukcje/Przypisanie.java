@@ -1,6 +1,6 @@
 package program.instrukcje;
 
-import Wyjatki.BladWykonania;
+import wyjatki.BladWykonania;
 import javaBuilder.JavaBuilder;
 import program.Program;
 import program.Wyrazenie;
@@ -29,6 +29,7 @@ public class Przypisanie extends Instrukcja {
         String wartoscName = javaBuilder.getNextFunctionName();
         javaPrzypisanie.append(nazwa).append(" = ").append(wartoscName).append("();\n");
         javaPrzypisanie.append("return ").append(nazwa).append(";\n");
+        wartosc.toJava(javaProgram, javaBuilder, wartoscName);
         javaProgram.getJavaProgram().append(javaBuilder.createFunction(functionName, javaPrzypisanie.toString()));
     }
 }

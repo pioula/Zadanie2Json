@@ -1,4 +1,4 @@
-package Wyjatki;
+package wyjatki;
 
 public class BladWykonania extends Exception{
 }
