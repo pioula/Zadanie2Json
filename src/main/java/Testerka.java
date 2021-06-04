@@ -1,16 +1,14 @@
-import javaBuilder.JavaBuilder;
 import wyjatki.BladWykonania;
+import wyjatki.CreateFile;
+import wyjatki.ManyFiles;
 import wyjatki.NieprawidlowyProgram;
 import robson.Robson;
 
-import javax.tools.JavaCompiler;
-import javax.tools.ToolProvider;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.net.URL;
-import java.net.URLClassLoader;
 
-public class Main {
+public class Testerka {
 
     private static void createJsonOutput(Robson robson, int i) {
         FileWriter writer;
@@ -55,13 +53,13 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) throws NieprawidlowyProgram, BladWykonania {
+    public static void main(String[] args) throws NieprawidlowyProgram, BladWykonania, FileNotFoundException,
+            ManyFiles, CreateFile {
         Robson robson = new Robson();
 
-        int liczbaTestow = 18;
+        final int liczbaTestow = 18;
 
-        System.out.println("enter");
-        for (int i = 18; i <= liczbaTestow; i++) {
+        for (int i = 0; i <= liczbaTestow; i++) {
             robson.fromJSON(i + "in.json");
             robson.toJSON(i + "out.json");
             robson.toJava("out" + i + ".java");

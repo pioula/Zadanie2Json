@@ -2,8 +2,6 @@ package program.argumenty.wyrazenieLogiczne.porownania;
 
 import wyjatki.BladWykonania;
 import program.Program;
-import program.argumenty.wyrazenieLogiczne.WyrazenieLogiczne;
-import program.argumenty.wyrazenieLogiczne.dwuargumentowe.WyrazenieLogiczneDwuargumentowe;
 
 public class Rowne extends Porownanie {
     public Rowne() {}

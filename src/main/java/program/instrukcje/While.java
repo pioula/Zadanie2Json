@@ -11,6 +11,10 @@ public class While extends Instrukcja {
 
     public While() {}
 
+    /*przyjmujemy, że prawda jest 1, fałsz jest 0, a wszystko co nie jest 1, lub 0 jest błędem.
+    Stąd while zwraca zawsze fałsz(bo zwraca 0).
+     */
+
     private boolean check(double val) throws BladWykonania {
         if (val == 1)
             return true;

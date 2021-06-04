@@ -9,7 +9,7 @@ public class Zmienna extends WyrazenieMatematyczneJednoargumentowe {
 
     @Override
     public double wykonaj(Program program) throws BladWykonania {
-        return program.wartoscZmiennej(nazwa);
+        return program.variableValue(nazwa);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class Zmienna extends WyrazenieMatematyczneJednoargumentowe {
 
         if (!javaProgram.isDeclared(nazwa)) {
             javaProgram.getJavaProgram().append(javaBuilder.declare(nazwa));
-            javaProgram.declareField(nazwa);
+            javaProgram.declareVariable(nazwa);
         }
 
         javaZmienna.append("return ").append(nazwa).append(";\n");

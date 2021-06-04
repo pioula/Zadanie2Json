@@ -1,35 +1,44 @@
 package robson;
 
 import wyjatki.BladWykonania;
+import wyjatki.CreateFile;
+import wyjatki.ManyFiles;
 import wyjatki.NieprawidlowyProgram;
 import json.JsonManager;
 import program.Program;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Robson {
     private Program program;
     private JsonManager jsonManager;
 
-    public void fromJSON(String filename) throws NieprawidlowyProgram {
+    /*
+    * fromJSON, przyjmuje nazwę pliku json wraz z rozszerzeniem znajdującym się w folderze
+    * Zadanie2Json/Json i konwertuje jego zawartość na Program */
+    public void fromJSON(String filename) throws NieprawidlowyProgram, FileNotFoundException, ManyFiles {
         File f = new File("Json");
         File[] matchingFiles = f.listFiles((dir, name) -> name.equals(filename));
 
         if (matchingFiles == null || matchingFiles.length == 0) {
-            System.out.println("Nie znaleziono pliku!");
-            return;
+            throw new FileNotFoundException("input JSON not found!");
         }
 
         if (matchingFiles.length > 1) {
-            System.out.println("Znaleziono więcej niż 1 plik o tej samej nazwie!");
-            return;
+            throw new ManyFiles("There are more than one file with this name!");
         }
 
         jsonManager = new JsonManager(matchingFiles[0]);
         this.program = new Program(jsonManager.getProgram());
     }
 
-    public void toJSON(String filename) {
+    /*
+    * toJSON przyjmuje nazwę pliku wraz z rozszerzeniem. Jeżeli w folderze Zadanie2Json/Json znajduje się już plik
+    * o takiej nazwie to zapisuje w nim swój wynik. Jeżeli nie istnieje, to próbuje stworzyć plik i zapisać tam
+    * swój wynik. Wynikiem jest przekonwertowany Program na format JSON*/
+    public void toJSON(String filename) throws CreateFile, ManyFiles {
         File f = new File("Json");
         File[] matchingFiles = f.listFiles((dir, name) -> name.equals(filename));
 
@@ -38,25 +47,28 @@ public class Robson {
         if (matchingFiles == null || matchingFiles.length == 0) {
             json = new File(f.getPath() + "/"+ filename);
             try {
-                if (!json.createNewFile())
-                    throw new Exception();
+            if (!json.createNewFile())
+                    throw new CreateFile("Couldn't create new JSON file! Check is there is Json folder in Zadanie2Json!");
             }
-            catch(Exception ex) {
-                System.out.println("Nie udało się znaleźć i stworzyć pliku json!");
-                return;
+            catch(IOException exp) {
+                throw new CreateFile("Couldn't create new JSON file! Check is there is Json folder in Zadanie2Json!");
             }
         }
         else {
             if (matchingFiles.length > 1) {
-                System.out.println("Znaleziono więcej niż 1 plik o tej samej nazwie!");
-                return;
+                throw new ManyFiles("There are more than one file with this name!");
             }
+
             json = matchingFiles[0];
         }
         jsonManager.writeToJson(json);
     }
 
-    public void toJava(String filename) {
+    /*
+    * toJava przyjmuje nazwę pliku wraz z rozszerzeniem. Jeżeli w folderze Zadanie2Json/Java znajduje się już plik
+     * o takiej nazwie to zapisuje w nim swój wynik. Jeżeli nie istnieje, to próbuje stworzyć plik i zapisać tam
+     * swój wynik. Wynikiem jest przekonwertowany Program na kompilowalny kod w Javie  */
+    public void toJava(String filename) throws CreateFile, ManyFiles {
         File f = new File("Java");
         File[] matchingFiles = f.listFiles((dir, name) -> name.equals(filename));
 
@@ -66,17 +78,15 @@ public class Robson {
             java = new File(f.getPath() + "/"+ filename);
             try {
                 if (!java.createNewFile())
-                    throw new Exception();
+                    throw new CreateFile("Couldn't create new Java file! Check is there is Java folder in Zadanie2Json!");
             }
-            catch(Exception ex) {
-                System.out.println("Nie udało się znaleźć i stworzyć pliku java!");
-                return;
+            catch(IOException | CreateFile exp) {
+                throw new CreateFile("Couldn't create new Java file! Check is there is Java folder in Zadanie2Json!");
             }
         }
         else {
             if (matchingFiles.length > 1) {
-                System.out.println("Znaleziono więcej niż 1 plik o tej samej nazwie!");
-                return;
+                throw new ManyFiles("There are more than one file with this name!");
             }
             java = matchingFiles[0];
         }

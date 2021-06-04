@@ -2,7 +2,6 @@ package program.argumenty.wyrazeniaMatematyczne.dwuargumentowe;
 
 import wyjatki.BladWykonania;
 import program.Program;
-import program.argumenty.wyrazeniaMatematyczne.WyrazenieMatematyczne;
 
 public class Plus extends WyrazenieMatematyczneDwuargumentowe {
     public Plus() {}

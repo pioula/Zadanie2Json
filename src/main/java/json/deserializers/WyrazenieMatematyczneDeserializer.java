@@ -13,9 +13,6 @@ import program.argumenty.wyrazeniaMatematyczne.dwuargumentowe.Plus;
 import program.argumenty.wyrazeniaMatematyczne.dwuargumentowe.Razy;
 import program.argumenty.wyrazeniaMatematyczne.jednoargumentowe.Liczba;
 import program.argumenty.wyrazeniaMatematyczne.jednoargumentowe.Zmienna;
-import program.instrukcje.If;
-import program.instrukcje.Przypisanie;
-import program.instrukcje.While;
 
 import java.lang.reflect.Type;
 

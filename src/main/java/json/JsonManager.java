@@ -20,7 +20,7 @@ public class JsonManager {
     private JsonReader reader;
     private Blok program;
 
-    public JsonManager(File file) {
+    public JsonManager(File file) throws FileNotFoundException {
         InstrukcjaDeserializer instrukcjaDeserializer = new InstrukcjaDeserializer(this);
         WyrazenieLogiczneDeserializer wyrazenieLogiczneDeserializer = new WyrazenieLogiczneDeserializer(this);
         WyrazenieMatematyczneDeserializer wyrazenieMatematyczneDeserializer = new WyrazenieMatematyczneDeserializer(this);
@@ -44,12 +44,9 @@ public class JsonManager {
         gson = gsonBuilder.create();
         this.file = file;
         program = new Blok();
-        try {
-            reader = new JsonReader(new FileReader(file.getPath()));
-        }
-        catch(FileNotFoundException ex) {
-            System.out.println("Nieznaleziono Pliku!");
-        }
+
+        reader = new JsonReader(new FileReader(file.getPath()));
+
         reload();
     }
 

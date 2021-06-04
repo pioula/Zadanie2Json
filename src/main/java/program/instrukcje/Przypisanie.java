@@ -13,7 +13,7 @@ public class Przypisanie extends Instrukcja {
     @Override
     public double wykonaj(Program program) throws BladWykonania {
         double wartoscZmiennej = wartosc.wykonaj(program);
-        program.zaktualizujZmienna(nazwa, wartoscZmiennej);
+        program.updateVariable(nazwa, wartoscZmiennej);
         return wartoscZmiennej;
     }
 
@@ -23,7 +23,7 @@ public class Przypisanie extends Instrukcja {
 
         if (!javaProgram.isDeclared(nazwa)) {
             javaProgram.getJavaProgram().append(javaBuilder.declare(nazwa));
-            javaProgram.declareField(nazwa);
+            javaProgram.declareVariable(nazwa);
         }
 
         String wartoscName = javaBuilder.getNextFunctionName();

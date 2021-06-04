@@ -1,11 +1,9 @@
 package json.serializers;
 
 import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import json.JsonManager;
-import json.JsonWrapper;
 import program.argumenty.wyrazenieLogiczne.WyrazenieLogiczne;
 import program.argumenty.wyrazenieLogiczne.dwuargumentowe.And;
 import program.argumenty.wyrazenieLogiczne.dwuargumentowe.Or;
@@ -13,7 +11,6 @@ import program.argumenty.wyrazenieLogiczne.jednoargumentowe.Not;
 import program.argumenty.wyrazenieLogiczne.porownania.*;
 import program.argumenty.wyrazenieLogiczne.zeroargumentowe.False;
 import program.argumenty.wyrazenieLogiczne.zeroargumentowe.True;
-import program.instrukcje.If;
 
 import java.lang.reflect.Type;
 

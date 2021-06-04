@@ -4,7 +4,6 @@ import wyjatki.BladWykonania;
 import javaBuilder.JavaBuilder;
 import program.Program;
 import program.Wyrazenie;
-import program.argumenty.wyrazenieLogiczne.WyrazenieLogiczne;
 
 public class If extends Instrukcja {
     private Wyrazenie warunek;
