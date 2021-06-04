@@ -1,7 +1,10 @@
 package program;
 
 import Wyjatki.BladWykonania;
+import javaBuilder.JavaBuilder;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -10,12 +13,13 @@ import java.util.TreeSet;
 public class Program {
     private Wyrazenie kod;
     private Map<String, Double> zmienne;
-    private Set<String> zadeklarowaneZmienne;
-
+    private Set<String> declaredFields;
+    private StringBuilder javaProgram;
     public Program(Wyrazenie kod) {
         this.kod = kod;
         zmienne = new HashMap<>();
-        zadeklarowaneZmienne = new TreeSet<>();
+        declaredFields = new TreeSet<>();
+        javaProgram = new StringBuilder();
     }
 
     public double wykonaj() throws BladWykonania {
@@ -36,28 +40,39 @@ public class Program {
         }
     }
 
-    public boolean czyZadeklarowana(String nazwa) {
-        return zadeklarowaneZmienne.contains(nazwa);
+    public boolean isDeclared(String nazwa) {
+        return declaredFields.contains(nazwa);
     }
 
-    public void usunDeklaracje(String nazwa) {
-        zadeklarowaneZmienne.remove(nazwa);
+    public void declareField(String nazwa) {
+        declaredFields.add(nazwa);
     }
 
-    public void zadeklarujZmienna(String nazwa) {
-        zadeklarowaneZmienne.add(nazwa);
+    public StringBuilder getJavaProgram() {
+        return javaProgram;
     }
 
-    /*public void toJava(File f) {
+    public void toJava(File f) {
         FileWriter writer;
         try {
             writer = new FileWriter(f);
-            writer.write(kod.toJava(this));
+
+            JavaBuilder javaBuilder = new JavaBuilder();
+
+            javaProgram.append(javaBuilder.openClass());
+            kod.toJava(this, javaBuilder, javaBuilder.getNextFunctionName());
+            javaProgram.append(javaBuilder.createMain());
+            javaProgram.append(javaBuilder.closeClass());
+
+            writer.write(javaProgram.toString());
+
+            javaProgram = null;
+            declaredFields = null;
             writer.close();
             System.out.println();
         }
         catch(Exception ex) {
             System.out.println("Blad");
         }
-    }*/
+    }
 }

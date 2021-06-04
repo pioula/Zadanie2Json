@@ -1,6 +1,7 @@
 package program;
 
 import Wyjatki.BladWykonania;
+import javaBuilder.JavaBuilder;
 
 public abstract class Wyrazenie {
     protected String typ;
@@ -11,5 +12,5 @@ public abstract class Wyrazenie {
 
     public abstract double wykonaj(Program program) throws BladWykonania;
 
-    //public abstract String toJava(Program program);
+    public abstract void toJava(Program javaProgram, JavaBuilder javaBuilder, String functionName);
 }

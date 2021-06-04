@@ -14,14 +14,10 @@ public class Robson {
 
     public void fromJSON(String filename) throws NieprawidlowyProgram {
         File f = new File("Json");
-        File[] matchingFiles = f.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return name.equals(filename);
-            }
-        });
+        File[] matchingFiles = f.listFiles((dir, name) -> name.equals(filename));
 
         if (matchingFiles == null || matchingFiles.length == 0) {
-            System.out.println("Nie znaleziono pliku!");;
+            System.out.println("Nie znaleziono pliku!");
             return;
         }
 
@@ -36,18 +32,15 @@ public class Robson {
 
     public void toJSON(String filename) {
         File f = new File("Json");
-        File[] matchingFiles = f.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return name.equals(filename);
-            }
-        });
+        File[] matchingFiles = f.listFiles((dir, name) -> name.equals(filename));
 
         File json;
 
         if (matchingFiles == null || matchingFiles.length == 0) {
             json = new File(f.getPath() + "/"+ filename);
             try {
-                json.createNewFile();
+                if (!json.createNewFile())
+                    throw new Exception();
             }
             catch(Exception ex) {
                 System.out.println("Nie udało się znaleźć i stworzyć pliku json!");
@@ -64,20 +57,17 @@ public class Robson {
         jsonManager.writeToJson(json);
     }
 
-    /*public void toJava(String filename) {
+    public void toJava(String filename) {
         File f = new File("Java");
-        File[] matchingFiles = f.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return name.equals(filename);
-            }
-        });
+        File[] matchingFiles = f.listFiles((dir, name) -> name.equals(filename));
 
         File java;
 
         if (matchingFiles == null || matchingFiles.length == 0) {
             java = new File(f.getPath() + "/"+ filename);
             try {
-                java.createNewFile();
+                if (!java.createNewFile())
+                    throw new Exception();
             }
             catch(Exception ex) {
                 System.out.println("Nie udało się znaleźć i stworzyć pliku java!");
@@ -93,7 +83,7 @@ public class Robson {
         }
 
         program.toJava(java);
-    }*/
+    }
 
     public double wykonaj() throws BladWykonania {
         if (jsonManager == null || program == null) {

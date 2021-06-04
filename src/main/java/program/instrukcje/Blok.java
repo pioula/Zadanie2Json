@@ -1,13 +1,14 @@
 package program.instrukcje;
 
 import Wyjatki.BladWykonania;
+import javaBuilder.JavaBuilder;
 import program.Program;
 import program.Wyrazenie;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 public class Blok extends Instrukcja {
-    private Collection<Wyrazenie> instrukcje;
+    private ArrayList<Wyrazenie> instrukcje;
 
     public Blok() {}
 
@@ -21,8 +22,26 @@ public class Blok extends Instrukcja {
         return wynik;
     }
 
-    /*@Override
-    public String toJava(Program program) {
-        return null;
-    }*/
+    @Override
+    public void toJava(Program javaProgram, JavaBuilder javaBuilder, String functionName) {
+        StringBuilder javaBlok = new StringBuilder();
+
+        if (instrukcje.size() == 0) {
+            javaBlok.append("return 0;\n");
+        }
+        else {
+            for (int i = 0; i <  instrukcje.size(); i++) {
+                String wyrazenieName = javaBuilder.getNextFunctionName();
+
+                if (i + 1 == instrukcje.size())
+                    javaBlok.append("return ").append(wyrazenieName).append("();\n");
+                else
+                    javaBlok.append(wyrazenieName).append("();\n");
+
+                instrukcje.get(i).toJava(javaProgram, javaBuilder, wyrazenieName);
+            }
+        }
+
+        javaProgram.getJavaProgram().append(javaBuilder.createFunction(functionName, javaBlok.toString()));
+    }
 }
