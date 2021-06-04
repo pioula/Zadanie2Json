@@ -46,16 +46,22 @@ public class Main {
             writer.close();
         }
         catch(Exception ex) {
-            System.out.println("Blad out");
+            if (ex instanceof BladWykonania) {
+                System.out.println("Blad wykonania!");
+            }
+            else {
+                System.out.println("Blad out");
+            }
         }
     }
 
     public static void main(String[] args) throws NieprawidlowyProgram, BladWykonania {
         Robson robson = new Robson();
 
-        int liczbaTestow = 13;
+        int liczbaTestow = 18;
 
-        for (int i = 1; i <= liczbaTestow; i++) {
+        System.out.println("enter");
+        for (int i = 18; i <= liczbaTestow; i++) {
             robson.fromJSON(i + "in.json");
             robson.toJSON(i + "out.json");
             robson.toJava("out" + i + ".java");

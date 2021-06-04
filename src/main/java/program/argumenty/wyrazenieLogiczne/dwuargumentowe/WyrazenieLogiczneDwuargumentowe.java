@@ -2,11 +2,12 @@ package program.argumenty.wyrazenieLogiczne.dwuargumentowe;
 
 import javaBuilder.JavaBuilder;
 import program.Program;
+import program.Wyrazenie;
 import program.argumenty.wyrazenieLogiczne.WyrazenieLogiczne;
 
 public abstract class WyrazenieLogiczneDwuargumentowe extends WyrazenieLogiczne {
-    protected WyrazenieLogiczne argument1;
-    protected WyrazenieLogiczne argument2;
+    protected Wyrazenie argument1;
+    protected Wyrazenie argument2;
 
     @Override
     public void toJava(Program javaProgram, JavaBuilder javaBuilder, String functionName) {

@@ -9,6 +9,7 @@ import json.JsonWrapper;
 import program.argumenty.wyrazenieLogiczne.WyrazenieLogiczne;
 import program.argumenty.wyrazenieLogiczne.dwuargumentowe.And;
 import program.argumenty.wyrazenieLogiczne.dwuargumentowe.Or;
+import program.argumenty.wyrazenieLogiczne.jednoargumentowe.Not;
 import program.argumenty.wyrazenieLogiczne.porownania.*;
 import program.argumenty.wyrazenieLogiczne.zeroargumentowe.False;
 import program.argumenty.wyrazenieLogiczne.zeroargumentowe.True;
@@ -37,6 +38,9 @@ public class WyrazenieLogiczneSerializer implements JsonSerializer<WyrazenieLogi
             }
             case "True" -> {
                 return jsonManager.getGson().toJsonTree(src, True.class);
+            }
+            case "Not" -> {
+                return jsonManager.getGson().toJsonTree(src, Not.class);
             }
             case "==" -> {
                 return jsonManager.getGson().toJsonTree(src, Rowne.class);

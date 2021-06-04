@@ -9,7 +9,11 @@ public class Not extends WyrazenieLogiczneJednoargumentowe {
 
     @Override
     public double wykonaj(Program program) throws BladWykonania {
-        return argument.wykonaj(program) == 1 ? 1 : 0;
+        double val1 = argument.wykonaj(program);
+        if (val1 != 0 && val1 != 1)
+            throw new BladWykonania();
+
+        return val1 == 1 ? 0 : 1;
     }
 
     @Override
@@ -19,7 +23,7 @@ public class Not extends WyrazenieLogiczneJednoargumentowe {
         String argumentName = javaBuilder.getNextFunctionName();
         argument.toJava(javaProgram, javaBuilder, argumentName);
 
-        javaNot.append("return ").append(argumentName).append("() == 1 ? 0 : 1;");
+        javaNot.append("return ").append(argumentName).append("() == 1 ? 0 : 1;\n");
 
         javaProgram.getJavaProgram().append(javaBuilder.createFunction(functionName, javaNot.toString()));
     }

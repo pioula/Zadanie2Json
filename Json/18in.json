@@ -1,0 +1,16 @@
+{
+  "typ": "Blok",
+  "instrukcje": [
+    {
+      "typ": "Dzielenie",
+      "argument1": {
+        "typ": "Liczba",
+        "wartosc": 10
+      },
+      "argument2": {
+        "typ": "Liczba",
+        "wartosc": 0
+      }
+    }
+  ]
+}

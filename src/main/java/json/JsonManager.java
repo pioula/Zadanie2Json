@@ -77,7 +77,6 @@ public class JsonManager {
             writer = new FileWriter(json);
             writer.write(gson.toJson(program));
             writer.close();
-            System.out.println();
         }
         catch(Exception ex) {
             System.out.println("Blad");

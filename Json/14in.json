@@ -1,0 +1,52 @@
+{
+  "typ": "Blok",
+  "instrukcje": [
+    {
+      "typ": "If",
+      "warunek": {
+        "typ": "Or",
+        "argument1": {
+          "typ": "Liczba",
+          "wartosc": -100
+        },
+        "argument2": {
+          "typ": "False"
+        }
+      },
+      "blok_prawda": {
+        "typ": "Przypisanie",
+        "nazwa": "numer",
+        "wartosc": {
+          "typ": "Plus",
+          "argument1": {
+            "typ": "Liczba",
+            "wartosc": -100
+          },
+          "argument2": {
+            "typ": "Liczba",
+            "wartosc": 9
+          }
+        }
+      }
+    },
+    {
+      "typ": "Przypisanie",
+      "nazwa": "numer",
+      "wartosc": {
+        "typ": "Plus",
+        "argument1": {
+          "typ": "Liczba",
+          "wartosc": -22
+        },
+        "argument2": {
+          "typ": "Liczba",
+          "wartosc": 9
+        }
+      }
+    },
+    {
+      "typ": "Zmienna",
+      "nazwa": "numer"
+    }
+  ]
+}

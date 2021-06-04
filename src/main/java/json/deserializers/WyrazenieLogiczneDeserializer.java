@@ -16,6 +16,7 @@ import program.argumenty.wyrazeniaMatematyczne.jednoargumentowe.Zmienna;
 import program.argumenty.wyrazenieLogiczne.WyrazenieLogiczne;
 import program.argumenty.wyrazenieLogiczne.dwuargumentowe.And;
 import program.argumenty.wyrazenieLogiczne.dwuargumentowe.Or;
+import program.argumenty.wyrazenieLogiczne.jednoargumentowe.Not;
 import program.argumenty.wyrazenieLogiczne.porownania.*;
 import program.argumenty.wyrazenieLogiczne.zeroargumentowe.False;
 import program.argumenty.wyrazenieLogiczne.zeroargumentowe.True;
@@ -43,6 +44,9 @@ public class WyrazenieLogiczneDeserializer implements JsonDeserializer<Wyrazenie
             }
             case "True" -> {
                 return jsonManager.getGson().fromJson(json, True.class);
+            }
+            case "Not" -> {
+                return jsonManager.getGson().fromJson(json, Not.class);
             }
             case "==" -> {
                 return jsonManager.getGson().fromJson(json, Rowne.class);

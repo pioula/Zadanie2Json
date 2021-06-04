@@ -9,7 +9,12 @@ public class Or extends WyrazenieLogiczneDwuargumentowe {
 
     @Override
     public double wykonaj(Program program) throws BladWykonania {
-        return argument1.wykonaj(program) == 1 || argument2.wykonaj(program) == 1 ? 1 : 0;
+        double val1 = argument1.wykonaj(program);
+        double val2 = argument2.wykonaj(program);
+        if ((val1 != 0 && val1 != 1) || (val2 != 0 && val2 != 1))
+            throw new BladWykonania();
+
+        return val1 == 1 || val2 == 1 ? 1 : 0;
     }
 
     @Override
