@@ -11,23 +11,10 @@ public class While extends Instrukcja {
 
     public While() {}
 
-    /*przyjmujemy, że prawda jest 1, fałsz jest 0, a wszystko co nie jest 1, lub 0 jest błędem.
-    Stąd while zwraca zawsze fałsz(bo zwraca 0).
-     */
-
-    private boolean check(double val) throws BladWykonania {
-        if (val == 1)
-            return true;
-        else if (val == 0)
-            return false;
-        else
-            throw new BladWykonania();
-    }
-
     @Override
     public double wykonaj(Program program) throws BladWykonania {
 
-        while(check(warunek.wykonaj(program))) {
+        while(warunek.wykonaj(program) != 0) {
             blok.wykonaj(program);
         }
         return 0;
@@ -38,7 +25,7 @@ public class While extends Instrukcja {
         StringBuilder javaWhile = new StringBuilder();
 
         String warunekName = javaBuilder.getNextFunctionName();
-        javaWhile.append("while (").append(warunekName).append("() == 1) {\n");
+        javaWhile.append("while (").append(warunekName).append("() != 0) {\n");
         warunek.toJava(javaProgram, javaBuilder, warunekName);
 
         String blokName = javaBuilder.getNextFunctionName();

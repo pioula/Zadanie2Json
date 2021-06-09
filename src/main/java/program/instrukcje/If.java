@@ -10,21 +10,17 @@ public class If extends Instrukcja {
     private Wyrazenie blok_prawda;
     private Wyrazenie blok_falsz;
 
-    /*przyjmujemy, że prawda jest 1, fałsz jest 0, a wszystko co nie jest 1, lub 0 jest błędem.
-    Stąd while zwraca zawsze fałsz(bo zwraca 0).
-     */
-
     @Override
     public double wykonaj(Program program) throws BladWykonania {
-        double val = warunek.wykonaj(program);
-        if (val == 1)
+        if (warunek.wykonaj(program) != 0) {
             return blok_prawda.wykonaj(program);
-        else if (val == 0 && blok_falsz != null)
+        }
+        else if (blok_falsz != null){
             return blok_falsz.wykonaj(program);
-        else if (blok_falsz == null)
+        }
+        else {
             return 0;
-        else
-            throw new BladWykonania();
+        }
     }
 
     @Override
@@ -32,7 +28,7 @@ public class If extends Instrukcja {
         StringBuilder javaIf = new StringBuilder();
 
         String warunekName = javaBuilder.getNextFunctionName();
-        javaIf.append("if (").append(warunekName).append("() == 1) {\n");
+        javaIf.append("if (").append(warunekName).append("() != 0) {\n");
         warunek.toJava(javaProgram, javaBuilder, warunekName);
 
         String blok_prawdaName = javaBuilder.getNextFunctionName();
